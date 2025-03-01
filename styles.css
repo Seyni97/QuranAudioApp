@@ -1,0 +1,74 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: flex;
+    height: 100vh;
+}
+
+/* Partie gauche : Playlist */
+.playlist {
+    width: 30%;
+    background: #ddd;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.playlist ul {
+    list-style: none;
+    padding: 0;
+}
+
+.playlist li {
+    padding: 10px;
+    cursor: pointer;
+    border-bottom: 1px solid #bbb;
+}
+
+.playlist li:hover {
+    background: #bbb;
+}
+
+/* Partie droite : Lecteur */
+.player {
+    flex: 1;
+    padding: 20px;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Contrôles audio */
+.controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Barre de progression */
+#progress {
+    width: 100%;
+}
+
+/* Mode responsive */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+    
+    .playlist {
+        width: 100%;
+        height: 40%;
+    }
+    
+    .player {
+        height: 60%;
+    }
+}
+
