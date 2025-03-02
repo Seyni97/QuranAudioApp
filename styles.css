@@ -1,3 +1,4 @@
+/* Style général */
 body {
     font-family: Arial, sans-serif;
     background: #f4f4f4;
@@ -14,55 +15,67 @@ body {
     justify-content: space-between;
     align-items: flex-start;
     width: 100%;
-    max-width: 900px; /* Réduit la largeur max pour éviter l'étalement */
+    max-width: 900px; /* Largeur max pour éviter l'étalement */
     margin: auto;
     padding: 10px;
-    gap: 20px; /* Espace entre les deux parties */
+    gap: 20px; /* Espacement entre la liste et le lecteur */
 }
 
-/* Partie gauche : Playlist */
-.playlist {
+/* Liste des audios */
+.audio-list {
     flex: 1;
     max-width: 40%;
-    background: #ddd;
+    max-height: 300px; /* Empêche la liste de déborder */
+    overflow-y: auto; /* Active le scroll si besoin */
+    border: 1px solid #ccc; /* Ajoute une bordure pour mieux voir */
     padding: 10px;
-    border: 1px solid #ccc;
-    max-height: 300px; /* Fixe la hauteur pour éviter le débordement */
-    overflow-y: auto; /* Active le scroll */
+    background: white;
 }
 
-/* Liste des musiques */
+/* Liste des morceaux */
+.playlist {
+    width: 30%;
+    background: #ddd;
+    padding: 20px;
+    overflow-y: auto;
+    border-radius: 8px;
+}
+
 .playlist ul {
     list-style: none;
     padding: 0;
-    margin: 0;
 }
 
 .playlist li {
-    padding: 10px;
+    padding: 12px;
     cursor: pointer;
     border-bottom: 1px solid #bbb;
+    font-size: 16px;
 }
 
 .playlist li:hover {
     background: #bbb;
 }
 
+/* Lecteur audio */
+.audio-player {
+    flex: 2; /* Prend 2 fois plus d'espace que la liste */
+    max-width: 60%;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
 /* Partie droite : Lecteur */
 .player {
-    flex: 2;
-    max-width: 60%;
+    flex: 1;
     padding: 20px;
     background: white;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    border: 1px solid #ccc;
-}
-
-#downloadBtn, #downloadLink {
-    display: none !important;
 }
 
 /* Contrôles audio */
@@ -75,33 +88,68 @@ body {
 /* Barre de progression */
 #progress {
     width: 100%;
+    height: 8px;
+    background: #ccc;
+    border-radius: 4px;
 }
 
-/* Mode responsive */
+/* Style des boutons */
+.controls button {
+    font-size: 16px;
+    padding: 10px;
+    border: none;
+    background: #007bff;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.controls button:hover {
+    background: #0056b3;
+}
+
+/* Mode responsive pour mobile */
 @media (max-width: 768px) {
     .container {
         flex-direction: column;
-        align-items: center;
-    }
-
-    .playlist, .player {
-        max-width: 100%;
+        width: 100%;
+        padding: 10px;
     }
 
     .playlist {
+        width: 100%;
         height: auto;
-        max-height: 200px; /* Ajustement de la hauteur */
-        overflow-y: auto;
+        max-height: 300px; /* Permet de scroller si besoin */
+        font-size: 18px; /* Augmente la taille du texte */
+        text-align: center;
     }
 
     .player {
+        width: 100%;
         height: auto;
-        padding: 15px;
+        padding: 20px;
+    }
+
+    /* Ajuste la taille des boutons et contrôles */
+    .controls button {
+        font-size: 18px;
+        padding: 12px;
+    }
+
+    /* Barre de progression plus grande */
+    #progress {
+        height: 10px;
+    }
+
+    /* Agrandit les boutons du lecteur */
+    audio {
+        width: 100%;
     }
 }
 
-/* Ajustement global */
+/* S'assure que tout s'adapte bien */
 audio, .playlist, .controls {
     max-width: 100%;
 }
+
 
