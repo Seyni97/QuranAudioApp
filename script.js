@@ -6,7 +6,6 @@ const durationDisplay = document.getElementById("duration");
 const audioTitle = document.getElementById("audio-title");
 const volume = document.getElementById("volume");
 const download = document.getElementById("download");
-const darkModeToggle = document.getElementById("darkModeToggle");
 const prevTrackBtn = document.getElementById("prevTrack");
 const nextTrackBtn = document.getElementById("nextTrack");
 const audioList = document.getElementById("audioList");
@@ -67,18 +66,19 @@ const audioList = document.getElementById("audioList");
             playPauseBtn.innerHTML = "▶️";
         }
     }
+    playPauseBtn.addEventListener("click", togglePlay);
+
     
     function updateProgress() {
         if (!audio.duration) return;
-    
+        
         const progressPercent = (audio.currentTime / audio.duration) * 100;
-        progressBar.style.width = progressPercent + "%";
-    
+        progressBar.value = progressPercent;  // ✅ Utiliser .value pour un input range
+        
         currentTimeDisplay.innerText = formatTime(audio.currentTime);
         durationDisplay.innerText = formatTime(audio.duration);
-    
-        requestAnimationFrame(updateProgress); // ✅ Mise à jour en continu
     }
+    
     
     
     function seek(event) {
@@ -108,6 +108,9 @@ const audioList = document.getElementById("audioList");
         audio.play();
         playPauseBtn.innerHTML = "⏸️";
     }
+    prevTrackBtn.addEventListener("click", prevTrack);
+    nextTrackBtn.addEventListener("click", nextTrack);
+
 
     // Générer la liste des audios dynamiquement
 audioFiles.forEach((track, index) => {
@@ -120,6 +123,8 @@ audioFiles.forEach((track, index) => {
     });
     audioList.appendChild(listItem);
 });
+
+audio.addEventListener("timeupdate", updateProgress);
     
     audio.addEventListener("timeupdate", () => {
         if (!isNaN(audio.duration) && audio.duration > 0) { // ✅ Vérifier que duration est valide
@@ -134,6 +139,7 @@ audioFiles.forEach((track, index) => {
         updateProgress(); // ✅ Mise à jour immédiate
     });
 
+
 // Modifier la position de l'audio via la barre de progression
 progress.addEventListener("input", () => {
     audio.currentTime = (progress.value / 100) * audio.duration;
@@ -145,12 +151,8 @@ volume.addEventListener("input", () => {
 });
 
 // Lien de téléchargement
-download.href = audio.src;
+download.setAttribute("href", audio.src);
+download.setAttribute("download", audioFiles[trackIndex].name + ".mp3");
 
-// Activer/Désactiver le mode sombre
-darkModeToggle.addEventListener("click", () => {
-    document.body.classList.toggle("dark-mode");
-});
-    
   
     loadTrack(trackIndex);
