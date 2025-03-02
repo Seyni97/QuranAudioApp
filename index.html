@@ -2,7 +2,6 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lecteur Audio</title>
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -14,10 +13,7 @@
             <h2>Liste des Audios</h2>
             <ul id="audioList"></ul>
         </div>
-
-        <!-- Bouton Mode Sombre -->
-        <button id="darkModeToggle">🌙 Mode Sombre</button>
-    
+        
         <!-- Lecteur audio -->
         <div class="player">
             <h2 id="audio-title">Lecture : </h2>
@@ -29,7 +25,7 @@
                 <input type="range" id="progress" value="0">
                 <span id="current-time">0:00</span> / <span id="duration">0:00</span>
                 <input type="range" id="volume" min="0" max="1" step="0.1" value="1">
-                <a id="download" download>⬇️ Télécharger</a>
+                
                
             </div>
         </div>
@@ -37,11 +33,11 @@
     
 
 
-        <!-- Section Signature & À Propos -->)
+        <!-- Section Signature  -->
          
         <div class="signature">
             <p>📌 copyright : <span id="copyright">@Seyni</span></p>
-            <p>ℹ️ À Propos : <span id="about">Ce lecteur permet d'écouter des fichiers audio du Coran en traduction française découpé en Juz.</span></p>
+            
         </div>
     </div>
 
